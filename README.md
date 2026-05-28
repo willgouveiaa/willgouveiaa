@@ -176,8 +176,8 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 | Project | Status | Users | Transactions | Uptime |
 |---------|--------|-------|--------------|--------|
-| **XFiber Ops** | 🟢 Live | 22 | 1000+ checkins/month | 99.9% |
-| **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 99.99% |
+| **XFiber Ops** | 🟢 Live | 55 | 1000+ checkins/month | 100%|
+| **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
 | **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
 
