@@ -35,7 +35,29 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ---
 
-### 2. **Omniwave Energy** — Multi-niche Landing Platform 🇺🇸
+### 2. **Longavita** — Support Platform for Chronic Diseases 🇧🇷
+*Community, information, health professionals & products for chronic disease management*
+
+**What it does:**
+- **Community/Forum** — Experience sharing between patients with protected identities (pseudonyms)
+- **Chronic Disease Library** — Reviewed informative content about health conditions
+- **Professionals Directory** — Specialists with 3 contact modes: direct contact, scheduling, telemedicine
+- **Marketplace** — Showcase of products for quality of life (showcase-only in this phase)
+- **Blog** — Articles and news about chronic diseases
+- **Backoffice (Django Admin)** — Team manages doctors, products, diseases & posts without programmer
+
+**Stack:**
+- **Backend:** Django 5 + PostgreSQL
+- **Frontend:** HTMX + Alpine.js + CSS via CDN (no build step)
+- **Infra:** Railway (auto-redeploy from GitHub)
+- **Static Files:** WhiteNoise
+- **UI:** Teal #0ea5a0 + Orange #f97316, Sora / Cormorant Garamond fonts
+
+**Target Audience:** Patients, caregivers, family members living with chronic conditions.
+
+---
+
+### 3. **Omniwave Energy** — Multi-niche Landing Platform 🇺🇸
 *Landing page generator for solar, roofing, pool, plumbing*
 
 **What it does:**
@@ -52,7 +74,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ---
 
-### 3. **Empireo** — Tax Filing Automation 🇧🇷
+### 4. **Empireo** — Tax Filing Automation 🇧🇷
 *Automated income tax for Brazilian freelancers earning in USD*
 
 **What it does:**
@@ -70,7 +92,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ---
 
-### 4. **WhatsApp Chatbot** — Multi-tenant with Claude AI 🇺🇸
+### 5. **WhatsApp Chatbot** — Multi-tenant with Claude AI 🇺🇸
 *Chatbot platform for WhatsApp powered by AI*
 
 **What it does:**
@@ -96,9 +118,10 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 | Project | Status | Users | Transactions | Uptime |
 |---------|--------|-------|--------------|--------|
-| **XFiber Ops** | 🟢 Live | 50 | 1000+ checkins/month | 100% |
-| **OmniWave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
-| **Empireo App** | 🟢 Live| 14 | - | 80% |
+| **XFiber Ops** | 🟢 Live | 55 | 1000+ checkins/month | 100% |
+| **Longavita** | 🟢 Live | Growing | 100+ community posts/month | 100% |
+| **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
+| **Empireo** | 🟡 Staging | — | Beta | — |
 | **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
 
 ---
@@ -188,7 +211,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 ## Complete Tech Stack Details
 
 ### Backend
-- **Django 5** (Python) — XFiber Ops, Empireo
+- **Django 5** (Python) — XFiber Ops, Longavita, Empireo
 - **Node.js + Express** — WhatsApp Chatbot
 - **REST APIs** — Inter-system integration
 
@@ -198,7 +221,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Tailwind CSS** — All projects
 
 ### Databases
-- **PostgreSQL** — XFiber Ops (Railway), Empireo (Railway)
+- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway)
 - **SQLite** — Local dev, fallback
 - **Supabase** — WhatsApp Chatbot
 
@@ -211,7 +234,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Leaflet + OpenStreetMap** — XFiber Ops (mapping)
 
 ### Infra & DevOps
-- **Railway** — XFiber Ops, Empireo (deploy + auto-redeploy)
+- **Railway** — XFiber Ops, Longavita, Empireo (deploy + auto-redeploy)
 - **Vercel** — Omniwave Energy
 - **GitHub** — Source of truth
 - **Docker** (optional) — Containerization
@@ -219,7 +242,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ### QA & Testing
 - **pytest** — Empireo (14 tests)
-- **Django TestCase** — XFiber Ops
+- **Django TestCase** — XFiber Ops, Longavita
 - **Manual testing** — All projects
 
 ### Languages
