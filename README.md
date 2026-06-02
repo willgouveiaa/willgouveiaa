@@ -114,6 +114,29 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ---
 
+### 6. **AlertaMe** — Reminder Assistant via WhatsApp 🇧🇷 🇺🇸
+*"Your family never forgets what matters" — Smart reminders in natural language*
+
+**What it does:**
+- **Natural language input** — "remind me to pay the electric bill on the 10th", "mom's appointment next Thursday at 8am", "daily medication at 8pm"
+- **AI understands** — parses dates (relative like "next month"), times, recurrence patterns using Claude API
+- **Auto-schedules** — creates structured reminders with date, time, recurrence
+- **Responds in text + audio** — confirms reminder via message and voice notification at scheduled time
+- **Family-focused** — each person identified by WhatsApp number; reminders can be shared
+- **Personalization** — customizable assistant name, voice (male/female), conversation style
+
+**Stack:**
+- **Backend:** Django 5 + PostgreSQL
+- **Infra:** Railway (auto-redeploy) + VPS Hetzner (Evolution API + Docker)
+- **AI Brain:** Claude API (Anthropic) — natural language → structured reminders
+- **Voice:** ElevenLabs TTS with audio caching
+- **WhatsApp Channel:** Evolution API (Fase 1, non-official) → Cloud API (Fase 2, official)
+- **Frontend/Landing:** Static HTML/CSS/JS bilingual (PT/EN) on Vercel
+- **Architecture:** Abstract `WhatsAppChannel` interface — swap Evolution for Cloud API with 1 config line
+
+
+---
+
 ## 📊 Production Numbers
 
 | Project | Status | Users | Transactions | Uptime |
@@ -121,6 +144,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 | **XFiber Ops** | 🟢 Live | 55 | 1000+ checkins/month | 100% |
 | **Longavita** | 🟢 Live | Growing | 100+ community posts/month | 100% |
 | **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
+| **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
 | **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
 
@@ -211,7 +235,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 ## Complete Tech Stack Details
 
 ### Backend
-- **Django 5** (Python) — XFiber Ops, Longavita, Empireo
+- **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe
 - **Node.js + Express** — WhatsApp Chatbot
 - **REST APIs** — Inter-system integration
 
@@ -221,28 +245,30 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Tailwind CSS** — All projects
 
 ### Databases
-- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway)
+- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway)
 - **SQLite** — Local dev, fallback
 - **Supabase** — WhatsApp Chatbot
 
 ### Integrations & APIs
-- **Anthropic Claude API** — WhatsApp Chatbot, Empireo (future)
-- **Evolution API** — WhatsApp Chatbot
+- **Anthropic Claude API** — WhatsApp Chatbot, Empireo (future), AlertaMe (brain)
+- **Evolution API** — WhatsApp Chatbot, AlertaMe (Phase 1 WhatsApp channel)
+- **ElevenLabs API** — AlertaMe (voice synthesis with caching)
 - **Wise API** — Empireo (in progress)
 - **Cloudinary** — XFiber Ops (bill uploads)
 - **Resend** — XFiber Ops (transactional email)
 - **Leaflet + OpenStreetMap** — XFiber Ops (mapping)
 
 ### Infra & DevOps
-- **Railway** — XFiber Ops, Longavita, Empireo (deploy + auto-redeploy)
-- **Vercel** — Omniwave Energy
+- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe (deploy + auto-redeploy)
+- **VPS Hetzner** — AlertaMe Evolution API (Docker, Ubuntu)
+- **Vercel** — Omniwave Energy, AlertaMe landing page
 - **GitHub** — Source of truth
 - **Docker** (optional) — Containerization
 - **Gunicorn + Whitenoise** — Production servers
 
 ### QA & Testing
-- **pytest** — Empireo (14 tests)
-- **Django TestCase** — XFiber Ops, Longavita
+- **pytest** — Empireo (14 tests), AlertaMe (webhook + brain tests)
+- **Django TestCase** — XFiber Ops, Longavita, AlertaMe
 - **Manual testing** — All projects
 
 ### Languages
