@@ -8,7 +8,7 @@
 
 I'm a **Product, GenAI & Data Specialist** with 5+ years of experience as a Senior Product Manager at a LATAM bank. A tech enthusiast who builds real products — I founded **OmniWave Group LLC** to design and deliver SaaS solutions *from architecture to production*.
 
-Every project here is a **complete product**: architecture, backend, frontend, deployment, and production maintenance. I work with **Django**, **Astro**, **Node.js**, **Claude AI**, and modern stacks. I prefer simple, scalable, and direct solutions.
+Every project here is a **complete product**: architecture, backend, frontend, deployment, and production maintenance. I work with **Django**, **Astro**, **Next.js**, **Node.js**, **Claude AI**, and modern stacks. I prefer simple, scalable, and direct solutions.
 
 **Expertise:** Product Strategy | GenAI Integration | Data-Driven Decisions | Full-Stack Architecture
 
@@ -134,6 +134,32 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Frontend/Landing:** Static HTML/CSS/JS bilingual (PT/EN) on Vercel
 - **Architecture:** Abstract `WhatsAppChannel` interface — swap Evolution for Cloud API with 1 config line
 
+---
+
+### 7. **LeadHaus** — Premium CRM for High-End Real Estate 🇧🇷
+*Commercial management for luxury real estate brokers — "never let a hot lead go cold"*
+
+**What it does:**
+- **Smart pipeline** — visual kanban (New lead → Contact → Visit → Proposal → Closed)
+- **Lead scoring** — surfaces who's hot right now (timing score 0–100) so the broker contacts the right person first
+- **Client cards** — full history, property interests, and contact data **encrypted at rest**
+- **Multi-channel capture** — WhatsApp, Instagram, Facebook, e-mail, referral feeding a single funnel
+- **AI drafts** — suggested replies written in the broker's own tone of voice (Claude)
+- **Deal Room** — secure space per transaction with document checklists + client access codes
+- **VIP security** — encrypted sensitive fields, 2FA, restricted access for high-profile clients (executives, public figures, athletes)
+- **Multi-tenant by design** — PostgreSQL Row-Level Security isolates each broker's portfolio at the database level
+
+**Stack:**
+- **Frontend:** Next.js 15 (App Router) + TypeScript + Tailwind
+- **Backend:** Next.js Server Actions + Prisma ORM
+- **DB:** PostgreSQL 16 with Row-Level Security (true multi-tenant isolation)
+- **Auth:** Auth.js (NextAuth v5) + 2FA TOTP
+- **AI:** Anthropic Claude API (zero-data-retention)
+- **Channels:** Meta Cloud API (WhatsApp / Instagram / Facebook)
+- **Infra:** Railway (auto-redeploy from GitHub) + managed PostgreSQL
+- **UI:** Gold #C8A96B + Turquoise #5BC9B8 + Ivory, Cormorant Garamond / Inter / Helvetica Neue
+
+**Target Audience:** High-end real estate brokers serving high-profile clients.
 
 ---
 
@@ -144,6 +170,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 | **XFiber Ops** | 🟢 Live | 55 | 1000+ checkins/month | 100% |
 | **Longavita** | 🟢 Live | Growing | 100+ community posts/month | 100% |
 | **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
+| **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
 | **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
 | **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
@@ -209,6 +236,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
 
 ### Frontend
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![Astro](https://img.shields.io/badge/Astro-ff5d01?style=for-the-badge&logo=astro&logoColor=white)
 ![HTMX](https://img.shields.io/badge/HTMX-3d72d7?style=for-the-badge&logo=htmx&logoColor=white)
 ![Alpine.js](https://img.shields.io/badge/Alpine.js-77c1d2?style=for-the-badge&logo=alpinedotjs&logoColor=white)
@@ -216,11 +244,13 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ### Databases & Data
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2d3748?style=for-the-badge&logo=prisma&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003b57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ecf8e?style=for-the-badge&logo=supabase&logoColor=white)
 
 ### Integrations & APIs
 ![Anthropic Claude](https://img.shields.io/badge/Anthropic_Claude-662e9b?style=for-the-badge&logo=anthropic&logoColor=white)
+![Meta](https://img.shields.io/badge/Meta_Cloud_API-0467df?style=for-the-badge&logo=meta&logoColor=white)
 ![Wise](https://img.shields.io/badge/Wise-5d34d6?style=for-the-badge&logo=wise&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448c5?style=for-the-badge&logo=cloudinary&logoColor=white)
 
@@ -237,20 +267,24 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 ### Backend
 - **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe
 - **Node.js + Express** — WhatsApp Chatbot
+- **Next.js 15** (App Router + Server Actions) — LeadHaus
 - **REST APIs** — Inter-system integration
 
 ### Frontend
 - **Astro 4** (TypeScript) — Omniwave Energy
+- **Next.js 15** (TypeScript) — LeadHaus
 - **HTMX + Alpine.js** — XFiber Ops
 - **Tailwind CSS** — All projects
 
 ### Databases
-- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway)
+- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security)
+- **Prisma ORM** — LeadHaus
 - **SQLite** — Local dev, fallback
 - **Supabase** — WhatsApp Chatbot
 
 ### Integrations & APIs
-- **Anthropic Claude API** — WhatsApp Chatbot, Empireo (future), AlertaMe (brain)
+- **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts), Empireo (future)
+- **Meta Cloud API** — LeadHaus (WhatsApp / Instagram / Facebook capture)
 - **Evolution API** — WhatsApp Chatbot, AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
 - **Wise API** — Empireo (in progress)
@@ -258,8 +292,13 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Resend** — XFiber Ops (transactional email)
 - **Leaflet + OpenStreetMap** — XFiber Ops (mapping)
 
+### Auth & Security
+- **Auth.js (NextAuth v5) + 2FA TOTP** — LeadHaus
+- **PostgreSQL Row-Level Security** — LeadHaus (multi-tenant isolation)
+- **AES-256-GCM encryption at rest** — LeadHaus (sensitive client data)
+
 ### Infra & DevOps
-- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe (deploy + auto-redeploy)
+- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus (deploy + auto-redeploy)
 - **VPS Hetzner** — AlertaMe Evolution API (Docker, Ubuntu)
 - **Vercel** — Omniwave Energy, AlertaMe landing page
 - **GitHub** — Source of truth
@@ -273,7 +312,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ### Languages
 - **Python** (Django) — Backend
-- **TypeScript** — Astro frontend
+- **TypeScript** — Astro / Next.js frontends
 - **JavaScript** — Frontend (Alpine.js, HTMX)
 - **SQL** — Migrations, queries
 - **Bash** — DevOps, scripts
