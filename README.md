@@ -8,7 +8,7 @@
 
 I'm a **Product, GenAI & Data Specialist** with 5+ years of experience as a Senior Product Manager at a LATAM bank. A tech enthusiast who builds real products — I founded **OmniWave Group LLC** to design and deliver SaaS solutions *from architecture to production*.
 
-Every project here is a **complete product**: architecture, backend, frontend, deployment, and production maintenance. I work with **Django**, **Astro**, **Next.js**, **Node.js**, **Claude AI**, and modern stacks. I prefer simple, scalable, and direct solutions.
+Every project here is a **complete product**: architecture, backend, frontend, deployment, and production maintenance. I work with **Django**, **Next.js**, **Astro**, **Node.js**, **Claude AI**, and modern stacks. I prefer simple, scalable, and direct solutions.
 
 **Expertise:** Product Strategy | GenAI Integration | Data-Driven Decisions | Full-Stack Architecture
 
@@ -52,8 +52,6 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Infra:** Railway (auto-redeploy from GitHub)
 - **Static Files:** WhiteNoise
 - **UI:** Teal #0ea5a0 + Orange #f97316, Sora / Cormorant Garamond fonts
-
-**Target Audience:** Patients, caregivers, family members living with chronic conditions.
 
 ---
 
@@ -130,7 +128,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Infra:** Railway (auto-redeploy) + VPS Hetzner (Evolution API + Docker)
 - **AI Brain:** Claude API (Anthropic) — natural language → structured reminders
 - **Voice:** ElevenLabs TTS with audio caching
-- **WhatsApp Channel:** Evolution API (Fase 1, non-official) → Cloud API (Fase 2, official)
+- **WhatsApp Channel:** Evolution API (Phase 1, non-official) → Cloud API (Phase 2, official)
 - **Frontend/Landing:** Static HTML/CSS/JS bilingual (PT/EN) on Vercel
 - **Architecture:** Abstract `WhatsAppChannel` interface — swap Evolution for Cloud API with 1 config line
 
@@ -163,6 +161,33 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ---
 
+### 8. **CargoOps** — TMS for Transportation 🇧🇷
+*"Never lose a shipment" — Transportation Management System for chemical & general cargo transporters*
+
+**What it does:**
+- **Real-time tracking** — Leaflet map with live vehicle positions, pulsing pins by status (en ruta/entregado/alerta)
+- **Smart dispatching** — intelligent routing + load matching + OTD (On-Time Delivery) monitoring
+- **Fleet management** — vehicle maintenance schedules, inspections, documents (RNTRC, CRLV)
+- **Driver compliance** — exams (médico/psicológico), licenses, hours of service, alerting system
+- **Tollway control** — detects when drivers forget to raise suspended axles on empty returns (saves company $)
+- **CT-e integration** — tax invoice + routing data linked in one place
+- **B2B quoting** — public form captures leads; inbox with quote requests
+- **Real financials** — Abril/2026 actuals: R$ 2.015.441 faturamento, OTD 91,5%, ticket R$ 1.241,80
+- **Admin & reports** — compliance reporting, financial insights, fleet analytics
+
+**Stack:**
+- **Frontend:** Next.js 16.2.9 (App Router) + React 19 + Tailwind v4 (no config file, `@theme` in CSS)
+- **Components:** shadcn/ui on **Base UI** (`@base-ui/react`, not Radix) + Lucide icons
+- **Maps:** Leaflet + react-leaflet (CARTO tiles, no API key needed)
+- **Client storage:** DataStore in localStorage (fake data for demo, Supabase clients ready)
+- **Infra:** Vercel (auto-deploy from GitHub)
+- **Demo:** https://cargoops-three.vercel.app (login: `admin@jundtransportes.com.br` / `cargoops2026`)
+- **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
+
+**Current Status:** Hi-fi prototype for investor/CEO demo (Jund Transportes). Real Apr/2026 numbers. Multi-tenant architecture ready (not yet live). Build always passes.
+
+---
+
 ## 📊 Production Numbers
 
 | Project | Status | Users | Transactions | Uptime |
@@ -172,6 +197,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 | **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
 | **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
 | **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
+| **CargoOps** | 🟢 Live | 1 org | 173+ shipments tracked/month | 100% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
 | **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
 
@@ -268,53 +294,56 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe
 - **Node.js + Express** — WhatsApp Chatbot
 - **Next.js 15** (App Router + Server Actions) — LeadHaus
+- **Next.js 16** (App Router) — CargoOps
 - **REST APIs** — Inter-system integration
 
 ### Frontend
+- **Next.js 16.2.9** (React 19) — CargoOps (hi-fi TMS demo)
+- **Next.js 15** (TypeScript) — LeadHaus (luxury CRM)
 - **Astro 4** (TypeScript) — Omniwave Energy
-- **Next.js 15** (TypeScript) — LeadHaus
-- **HTMX + Alpine.js** — XFiber Ops
-- **Tailwind CSS** — All projects
+- **HTMX + Alpine.js** — XFiber Ops, Longavita
+- **Tailwind CSS** — All projects (v4 in CargoOps, v3 elsewhere)
 
 ### Databases
-- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security)
-- **Prisma ORM** — LeadHaus
+- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security), CargoOps (Vercel Postgres, multi-tenant ready)
+- **Prisma ORM** — LeadHaus, CargoOps
 - **SQLite** — Local dev, fallback
 - **Supabase** — WhatsApp Chatbot
 
 ### Integrations & APIs
-- **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts), Empireo (future)
-- **Meta Cloud API** — LeadHaus (WhatsApp / Instagram / Facebook capture)
+- **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts), CargoOps (future suggestions), Empireo (future)
+- **Meta Cloud API** — LeadHaus (WhatsApp / Instagram / Facebook), CargoOps (future)
 - **Evolution API** — WhatsApp Chatbot, AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
 - **Wise API** — Empireo (in progress)
-- **Cloudinary** — XFiber Ops (bill uploads)
+- **Cloudinary** — XFiber Ops, Longavita (bill/document uploads)
+- **Leaflet + OpenStreetMap/CARTO** — XFiber Ops, CargoOps (real-time tracking)
 - **Resend** — XFiber Ops (transactional email)
-- **Leaflet + OpenStreetMap** — XFiber Ops (mapping)
 
 ### Auth & Security
 - **Auth.js (NextAuth v5) + 2FA TOTP** — LeadHaus
-- **PostgreSQL Row-Level Security** — LeadHaus (multi-tenant isolation)
+- **PostgreSQL Row-Level Security** — LeadHaus, CargoOps (multi-tenant isolation)
 - **AES-256-GCM encryption at rest** — LeadHaus (sensitive client data)
 
 ### Infra & DevOps
 - **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus (deploy + auto-redeploy)
+- **Vercel** — Omniwave Energy, CargoOps, AlertaMe landing page
 - **VPS Hetzner** — AlertaMe Evolution API (Docker, Ubuntu)
-- **Vercel** — Omniwave Energy, AlertaMe landing page
-- **GitHub** — Source of truth
+- **GitHub** — Source of truth for all projects
 - **Docker** (optional) — Containerization
-- **Gunicorn + Whitenoise** — Production servers
+- **Gunicorn + Whitenoise** — Production servers (Django projects)
 
 ### QA & Testing
 - **pytest** — Empireo (14 tests), AlertaMe (webhook + brain tests)
 - **Django TestCase** — XFiber Ops, Longavita, AlertaMe
+- **Next.js build** — LeadHaus, CargoOps (lint + type-check)
 - **Manual testing** — All projects
 
 ### Languages
 - **Python** (Django) — Backend
-- **TypeScript** — Astro / Next.js frontends
+- **TypeScript** — Next.js frontends (LeadHaus, CargoOps), Astro (Omniwave Energy)
 - **JavaScript** — Frontend (Alpine.js, HTMX)
-- **SQL** — Migrations, queries
+- **SQL** — Migrations, queries, RLS policies
 - **Bash** — DevOps, scripts
 
 ---
