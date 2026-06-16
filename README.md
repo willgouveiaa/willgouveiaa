@@ -181,10 +181,8 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Maps:** Leaflet + react-leaflet (CARTO tiles, no API key needed)
 - **Client storage:** DataStore in localStorage (fake data for demo, Supabase clients ready)
 - **Infra:** Vercel (auto-deploy from GitHub)
-- **Demo:** https://cargoops-three.vercel.app (login: `admin@jundtransportes.com.br` / `cargoops2026`)
 - **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
 
-**Current Status:** Hi-fi prototype for investor/CEO demo (Jund Transportes). Real Apr/2026 numbers. Multi-tenant architecture ready (not yet live). Build always passes.
 
 ---
 
