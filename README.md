@@ -33,6 +33,22 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Infra:** Railway (auto-redeploy) + SQLite (dev)
 - **UI:** Brand navy #0F1B3D + orange #FF6B00, Figtree font
 
+**Architecture:**
+
+```mermaid
+flowchart TD
+    W["📱 Field Workers<br/>PWA · GPS + Camera"] --> UI
+    O["💻 Office / Admin"] --> UI
+    UI["HTMX + Alpine.js + Tailwind<br/>i18n EN / ES / PT"] --> DJ
+    UI --> MAP["🗺️ Leaflet + OpenStreetMap<br/>Job mapping"]
+    DJ["⚙️ Django 5 + REST Framework<br/>CRM · Reports · Check-in · Clock in/out · Payroll"]
+    DJ --> PG[("🐘 PostgreSQL")]
+    DJ --> CL["☁️ Cloudinary<br/>Photos & documents"]
+    DJ --> RS["✉️ Resend<br/>Transactional email"]
+    GH["GitHub"] -. auto-redeploy .-> RW["🚂 Railway"]
+    RW -. hosts .-> DJ
+```
+
 ---
 
 ### 2. **Longavita** — Support Platform for Chronic Diseases 🇧🇷
@@ -53,6 +69,24 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Static Files:** WhiteNoise
 - **UI:** Teal #0ea5a0 + Orange #f97316, Sora / Cormorant Garamond fonts
 
+**Architecture:**
+
+```mermaid
+flowchart TD
+    P["👥 Patients & Visitors"] --> UI["HTMX + Alpine.js<br/>No build step"]
+    UI --> DJ["⚙️ Django 5"]
+    T["🛠️ Content Team"] --> ADM["Django Admin<br/>Backoffice"] --> DJ
+    DJ --> M1["💬 Community<br/>Pseudonymous forum"]
+    DJ --> M2["📚 Disease Library"]
+    DJ --> M3["🩺 Professionals Directory"]
+    DJ --> M4["🛍️ Marketplace"]
+    DJ --> M5["📰 Blog"]
+    DJ --> PG[("🐘 PostgreSQL")]
+    DJ --> CL["☁️ Cloudinary"]
+    DJ --> WN["WhiteNoise<br/>Static files"]
+    GH["GitHub"] -. auto-redeploy .-> RW["🚂 Railway"]
+```
+
 ---
 
 ### 3. **Omniwave Energy** — Multi-niche Landing Platform 🇺🇸
@@ -69,6 +103,18 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Frontend:** Astro 4 + TypeScript + Tailwind
 - **Infra:** Vercel (auto-deploy)
 - **Backend integration:** Django REST API (Omniwave Ops)
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    V["🌎 Visitors<br/>Google / Ads"] --> AS
+    AS["🚀 Astro 4 + TypeScript<br/>Niche landing pages<br/>PT · ES · EN · Sitemap · SEO"]
+    AS -- "Lead form" --> API["⚙️ Django REST API<br/>Omniwave Ops"]
+    API --> CRM["📋 Lead CRM"]
+    GH["GitHub"] -. auto-deploy .-> VC["▲ Vercel"]
+    VC -. hosts .-> AS
+```
 
 ---
 
@@ -87,6 +133,19 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **DB:** SQLite (dev), PostgreSQL (prod)
 - **Tests:** pytest (14 tests covering all tax brackets)
 - **Integration:** Wise API and other worldwide banks (in progress)
+
+**Architecture:**
+
+```mermaid
+flowchart TD
+    U["👤 Freelancer<br/>Earning in USD"] --> DB["🌑 Django Dashboard"]
+    DB --> TX["💱 Transactions & History"]
+    TX --> ENG["🧮 Tax Engine<br/>Brackets + Deductions<br/>✅ pytest · 14 tests"]
+    ENG --> PDF["📄 Tax Form PDF"]
+    ENG --> REP["📊 Reports"]
+    TX --> PG[("🐘 PostgreSQL")]
+    WISE["🏦 Wise API · OAuth"] -. in progress .-> TX
+```
 
 ---
 
@@ -110,6 +169,20 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 **Use cases:** 24/7 support, automated FAQ, lead qualification.
 
+**Architecture:**
+
+```mermaid
+flowchart LR
+    WA["💬 WhatsApp User"] <--> EV["Evolution API"]
+    EV -- "Webhook" --> NODE["⚙️ Node.js + Express"]
+    NODE --> TEN["🏢 Tenant Router<br/>1 client = 1 tenant"]
+    TEN --> CLA["🧠 Claude API"]
+    TEN --> SB[("⚡ Supabase<br/>History · Usage · Config")]
+    CLA --> NODE
+    NODE -- "Reply" --> EV
+    SB --> DASH["📊 Per-client Dashboard"]
+```
+
 ---
 
 ### 6. **AlertaMe** — Reminder Assistant via WhatsApp 🇧🇷 🇺🇸
@@ -131,6 +204,23 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **WhatsApp Channel:** Evolution API (Phase 1, non-official) → Cloud API (Phase 2, official)
 - **Frontend/Landing:** Static HTML/CSS/JS bilingual (PT/EN) on Vercel
 - **Architecture:** Abstract `WhatsAppChannel` interface — swap Evolution for Cloud API with 1 config line
+
+**Architecture:**
+
+```mermaid
+flowchart TD
+    FAM["👨‍👩‍👧 Family<br/>WhatsApp"] <--> CH
+    CH["🔌 WhatsAppChannel interface<br/>Evolution API → Cloud API"]
+    CH -- "Webhook" --> DJ["⚙️ Django 5"]
+    DJ -- "Natural language" --> CLA["🧠 Claude API<br/>Date · Time · Recurrence"]
+    CLA -- "Structured reminder" --> DJ
+    DJ --> PG[("🐘 PostgreSQL<br/>Reminders")]
+    PG -- "Scheduled time" --> TTS["🔊 ElevenLabs TTS<br/>Audio cache"]
+    TTS --> CH
+    HZ["🖥️ Hetzner VPS<br/>Docker"] -. hosts .-> CH
+    RW["🚂 Railway"] -. hosts .-> DJ
+    LP["🌐 Landing PT/EN<br/>Vercel"]
+```
 
 ---
 
@@ -159,6 +249,22 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 **Target Audience:** High-end real estate brokers serving high-profile clients.
 
+**Architecture:**
+
+```mermaid
+flowchart TD
+    B["🏡 Broker"] --> AUTH["🔐 Auth.js + 2FA TOTP"]
+    AUTH --> UI["▲ Next.js 15 · App Router<br/>Kanban · Lead Scoring · Deal Room"]
+    CH["📲 WhatsApp · Instagram · Facebook"] <--> META["Meta Cloud API"]
+    UI --> SA["⚡ Server Actions<br/>Business Logic"]
+    META --> SA
+    SA --> PR["Prisma ORM"]
+    SA --> CLA["🧠 Claude API<br/>Zero data retention"]
+    PR --> PG[("🐘 PostgreSQL 16")]
+    PG --- RLS["🛡️ Row-Level Security<br/>+ AES-256-GCM at rest"]
+    RW["🚂 Railway"] -. hosts .-> UI
+```
+
 ---
 
 ### 8. **CargoOps** — TMS for Transportation 🇧🇷
@@ -183,6 +289,21 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Infra:** Vercel (auto-deploy from GitHub)
 - **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
 
+**Architecture:**
+
+```mermaid
+flowchart TD
+    D["🚚 Dispatchers & Managers"] --> UI
+    C["🏭 B2B Prospects"] -- "Quote form" --> UI
+    UI["▲ Next.js 16 + React 19<br/>shadcn/ui on Base UI · Tailwind v4"]
+    UI --> MAP["🗺️ Leaflet + CARTO<br/>Real-time fleet map"]
+    UI --> MOD["📦 Dispatch · Fleet · Compliance<br/>Tolls · CT-e · Quotes · Reports"]
+    MOD --> DS["🗄️ DataStore layer"]
+    DS --> LS["localStorage<br/>Demo data"]
+    DS -. ready .-> SB[("PostgreSQL / Supabase")]
+    VC["▲ Vercel"] -. hosts .-> UI
+```
+
 ---
 
 ### 9. **BrandQ** — AI-First Digital Marketing & Branding Studio 🇺🇸 🇧🇷
@@ -202,6 +323,18 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Client sites:** Django + Railway
 - **Brand:** "Q" shaped as a lime-green magnifying glass, Inter / Manrope fonts
 
+**Architecture:**
+
+```mermaid
+flowchart LR
+    L["📥 Lead"] --> BR["💬 WhatsApp Briefing<br/>5 questions · text or audio"]
+    BR --> ID["🎨 Brand Identity<br/>& Positioning"]
+    ID --> SITE["⚙️ Django Website<br/>No plugins · ms load"]
+    SITE --> RW["🚂 Railway"]
+    RW --> SEO["🔎 Google Organic"]
+    SEO --> OUT["📈 Inbound customers<br/>for the client"]
+```
+
 ---
 
 ### 10. **RAVENA Dental** — B2B Dental Consulting Landing Page 🇺🇸
@@ -219,6 +352,17 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **DNS:** Netlify DNS
 - **Domain & email:** GoDaddy
 
+**Architecture:**
+
+```mermaid
+flowchart LR
+    DEV["👨‍💻 index.html"] --> GH["GitHub<br/>ravena-site"]
+    GH -. auto-deploy .-> NL["🌐 Netlify CDN"]
+    V["🦷 Dental Practices"] --> DNS["Netlify DNS<br/>Custom domain"]
+    DNS --> NL
+    V -. contact .-> MAIL["✉️ Business Email<br/>GoDaddy"]
+```
+
 ---
 
 ### 11. **SolarIQ** — Smart Platform for Solar Operations 🇺🇸 *(in development)*
@@ -235,6 +379,21 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 **Stack:**
 - **Solar data:** Google Solar API (Building Insights + Data Layers / DSM)
 - **Geo:** Google Geocoding API (Google Cloud)
+
+**Architecture:**
+
+```mermaid
+flowchart TD
+    ADDR["🏠 Homeowner Address"] --> GEO["📍 Google Geocoding API"]
+    GEO --> SOL["☀️ Google Solar API<br/>Building Insights + Data Layers"]
+    SOL --> CONF{"🚦 Roof data<br/>confidence"}
+    CONF -- "🟢 Good" --> M3D["🧊 3D Roof Model<br/>DSM + aerial imagery"]
+    CONF -- "🔴 Poor / new build" --> SURV["📋 Mandatory site survey"]
+    M3D --> Q["✅ Pre-qualified lead"]
+    SURV --> Q
+    Q --> PER["📑 Permit"] --> INS["🔧 Installation"] --> PTO["⚡ PTO"]
+    PTO --> BI["📊 Dashboards · Analytics<br/>AI Automations"]
+```
 
 ---
 
@@ -280,7 +439,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ## 📞 Contact
 
-- **LinkedIn:** [linkedin.com/in/will-gouveia](https://linkedin.com/in/willgouveia)
+- **LinkedIn:** [linkedin.com/in/will-gouveia](https://linkedin.com/in/will-gouveia)
 - **Email:** wgouveiaa@gmail.com
 - **GitHub:** [@willgouveiaa](https://github.com/willgouveiaa)
 
