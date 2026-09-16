@@ -183,6 +183,58 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Infra:** Vercel (auto-deploy from GitHub)
 - **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
 
+---
+
+### 9. **BrandQ** — AI-First Digital Marketing & Branding Studio 🇺🇸 🇧🇷
+*Branding, websites, and positioning focused on what actually moves revenue — no traditional agency overhead*
+
+**What it does:**
+- **Branding & visual identity** — logos, brand systems, and positioning for small and mid-sized businesses
+- **High-performance websites** — custom Django sites instead of WordPress: millisecond load times, responsive without themes, clean SEO without plugin bloat
+- **Fast delivery** — 15–20 days from briefing to launch, with zero plugin updates or breakage to manage afterwards
+- **Low running costs** — Railway hosting at a fraction of typical WordPress hosting
+- **SEO & positioning** — organic visibility built in from day one (client sites already generating inbound bookings from Google, without paid traffic)
+- **WhatsApp-native discovery** — 5-question briefing clients answer by text or audio, in plain language
+- **Lean by design** — AI-powered workflows, no employee-dependent operations
+- **Confidential cases** — portfolio spans healthcare, food service, solar, logistics, fintech, and telecom clients
+
+**Stack:**
+- **Client sites:** Django + Railway
+- **Brand:** "Q" shaped as a lime-green magnifying glass, Inter / Manrope fonts
+
+---
+
+### 10. **RAVENA Dental** — B2B Dental Consulting Landing Page 🇺🇸
+*"Stronger Practices. Brighter Tomorrows." — Consulting, training & mentoring for dental practices in New Jersey*
+
+**What it does:**
+- **Service showcase** — practice management, dental technology, clinical education, team training, instrument management
+- **Specialized programs** — PRF / regenerative dentistry and nitrous oxide sedation training & mentoring
+- **Brand-matched design** — palette and typography derived directly from the brand logo (gold line-art tooth + dark green wordmark)
+- **Professional presence** — custom domain + branded business email
+
+**Stack:**
+- **Frontend:** Static single-page HTML/CSS/JS (no build step)
+- **Infra:** Netlify (auto-deploy from GitHub)
+- **DNS:** Netlify DNS
+- **Domain & email:** GoDaddy
+
+---
+
+### 11. **SolarIQ** — Smart Platform for Solar Operations 🇺🇸 *(in development)*
+*AI, dashboards, analytics, and automation in one platform — turning complex solar data into faster decisions*
+
+**What it does:**
+- **Lead pre-qualification** — roof and solar potential analysis powered by Google Solar API
+- **Data confidence traffic light** — flags roof data quality; triggers a mandatory site survey when imagery is poor or the home is new construction
+- **3D roof model** — roof and surroundings (neighbors, street) rendered from Solar API data layers (DSM + aerial imagery)
+- **Post-sale operations core** — end-to-end project tracking from permit → installation → PTO (Permission to Operate)
+- **Operational intelligence** — dashboards, analytics, and automations for solar installers
+- **Market focus** — residential solar companies in Florida
+
+**Stack:**
+- **Solar data:** Google Solar API (Building Insights + Data Layers / DSM)
+- **Geo:** Google Geocoding API (Google Cloud)
 
 ---
 
@@ -196,8 +248,11 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 | **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
 | **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
 | **CargoOps** | 🟢 Live | 1 org | 173+ shipments tracked/month | 100% |
+| **BrandQ** | 🟢 Active | — | Client brands & sites delivered | — |
+| **RAVENA Dental** | 🟢 Live | — | Landing page + domain + email | 100% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
 | **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
+| **SolarIQ** | 🟠 In development | — | MVP | — |
 
 ---
 
@@ -225,7 +280,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 
 ## 📞 Contact
 
-- **LinkedIn:** [linkedin.com/in/will-gouveia](https://linkedin.com/in/will-gouveia)
+- **LinkedIn:** [linkedin.com/in/will-gouveia](https://linkedin.com/in/willgouveia)
 - **Email:** wgouveiaa@gmail.com
 - **GitHub:** [@willgouveiaa](https://github.com/willgouveiaa)
 
@@ -245,7 +300,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **RCMOS Journal:** [Article #1880](https://submissoesrevistarcmos.com.br/rcmos/article/view/1880)
 
 ### 🏆 Awards & Recognition
-- **IEEE Member** — Institute of Electrical and Electronics Engineers
+- **IEEE Senior Member** (since June 2026) — Institute of Electrical and Electronics Engineers
 - **RCMOS 2023 Cycle:** [Recognition & Award](https://submissoesrevistarcmos.com.br/rcmos/ciclo_2023)
 
 ---
@@ -275,12 +330,14 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 ### Integrations & APIs
 ![Anthropic Claude](https://img.shields.io/badge/Anthropic_Claude-662e9b?style=for-the-badge&logo=anthropic&logoColor=white)
 ![Meta](https://img.shields.io/badge/Meta_Cloud_API-0467df?style=for-the-badge&logo=meta&logoColor=white)
+![Google Cloud](https://img.shields.io/badge/Google_Solar_API-4285f4?style=for-the-badge&logo=googlecloud&logoColor=white)
 ![Wise](https://img.shields.io/badge/Wise-5d34d6?style=for-the-badge&logo=wise&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448c5?style=for-the-badge&logo=cloudinary&logoColor=white)
 
 ### DevOps & Hosting
 ![Railway](https://img.shields.io/badge/Railway-0b0d0e?style=for-the-badge&logo=railway&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-00c7b7?style=for-the-badge&logo=netlify&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ed?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-f05032?style=for-the-badge&logo=git&logoColor=white)
 
@@ -289,7 +346,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 ## Complete Tech Stack Details
 
 ### Backend
-- **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe
+- **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe, BrandQ client sites
 - **Node.js + Express** — WhatsApp Chatbot
 - **Next.js 15** (App Router + Server Actions) — LeadHaus
 - **Next.js 16** (App Router) — CargoOps
@@ -300,7 +357,8 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Next.js 15** (TypeScript) — LeadHaus (luxury CRM)
 - **Astro 4** (TypeScript) — Omniwave Energy
 - **HTMX + Alpine.js** — XFiber Ops, Longavita
-- **Tailwind CSS** — All projects (v4 in CargoOps, v3 elsewhere)
+- **Static HTML/CSS/JS** — RAVENA Dental, AlertaMe landing page
+- **Tailwind CSS** — All app projects (v4 in CargoOps, v3 elsewhere)
 
 ### Databases
 - **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security), CargoOps (Vercel Postgres, multi-tenant ready)
@@ -313,6 +371,8 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **Meta Cloud API** — LeadHaus (WhatsApp / Instagram / Facebook), CargoOps (future)
 - **Evolution API** — WhatsApp Chatbot, AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
+- **Google Solar API** — SolarIQ (roof analysis, data layers / DSM, 3D roof model)
+- **Google Geocoding API** — SolarIQ (address → coordinates)
 - **Wise API** — Empireo (in progress)
 - **Cloudinary** — XFiber Ops, Longavita (bill/document uploads)
 - **Leaflet + OpenStreetMap/CARTO** — XFiber Ops, CargoOps (real-time tracking)
@@ -324,9 +384,11 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - **AES-256-GCM encryption at rest** — LeadHaus (sensitive client data)
 
 ### Infra & DevOps
-- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus (deploy + auto-redeploy)
+- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus, BrandQ client sites (deploy + auto-redeploy)
 - **Vercel** — Omniwave Energy, CargoOps, AlertaMe landing page
+- **Netlify** — RAVENA Dental (auto-deploy from GitHub + Netlify DNS)
 - **VPS Hetzner** — AlertaMe Evolution API (Docker, Ubuntu)
+- **Google Cloud** — SolarIQ (Solar API + Geocoding)
 - **GitHub** — Source of truth for all projects
 - **Docker** (optional) — Containerization
 - **Gunicorn + Whitenoise** — Production servers (Django projects)
@@ -351,6 +413,7 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 - 🇧🇷 Brazilian, based in São Paulo
 - 🎯 Senior Product Manager (5+ years at LATAM bank)
 - 🚀 Founder of OmniWave Group LLC in USA 🇺🇸
+- 🏅 IEEE Senior Member
 - 📱 Obsessed with onboarding & UX
 - 🤖 GenAI enthusiast (Claude, LLMs, agents)
 - 💻 Workbench: Mac + Claude Code + GitHub web
