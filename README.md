@@ -57,7 +57,7 @@ flowchart TB
 - **Community/Forum** — Experience sharing between patients with protected identities (pseudonyms)
 - **Chronic Disease Library** — Reviewed informative content about health conditions
 - **Professionals Directory** — Specialists with 3 contact modes: direct contact, scheduling, telemedicine
-- **Marketplace** — Showcase of products for quality of life (showcase-only in this phase)
+- **Marketplace** — Curated showcase of products for quality of life
 - **Blog** — Articles and news about chronic diseases
 - **Backoffice (Django Admin)** — Team manages doctors, products, diseases & posts without programmer
 
@@ -119,7 +119,7 @@ flowchart LR
 **What it does:**
 - Dark & premium dashboard
 - Accurate tax calculation with deductions
-- Wise integration (OAuth) coming soon
+- Wise integration (OAuth)
 - Tax form PDF generation
 - Transaction history + reports
 
@@ -127,14 +127,14 @@ flowchart LR
 - **Backend:** Django + Python
 - **DB:** SQLite (dev), PostgreSQL (prod)
 - **Tests:** pytest (14 tests covering all tax brackets)
-- **Integration:** Wise API and other worldwide banks (in progress)
+- **Integration:** Wise API and other worldwide banks
 
 **Architecture:**
 
 ```mermaid
 flowchart LR
     U["🧑‍💻 Freelancer"] --> DASH["Django Dashboard<br/>dark & premium"]
-    W["Wise API<br/>OAuth — in progress"] -.->|transactions| DASH
+    W["Wise API<br/>OAuth"] -->|transactions| DASH
     DASH --> TAX["Tax Engine<br/>all brackets + deductions<br/>14 pytest tests"]
     TAX --> PDF["Tax form PDF"]
     DASH --> PG[(PostgreSQL)]
@@ -143,7 +143,7 @@ flowchart LR
 ---
 
 ### 5. **WhatsApp Chatbot** — Multi-tenant with Claude AI 🇺🇸
-*Chatbot platform for WhatsApp powered by AI — in production for a US insurance agency*
+*Chatbot platform for WhatsApp powered by AI — in production with 9 active clients*
 
 **What it does:**
 - Multi-tenant chatbot (each client is a tenant)
@@ -161,7 +161,7 @@ flowchart LR
 - **Channel:** Meta Cloud API (official) — migrated from Evolution API
 - **Infra:** Railway (~$10–15/month serving 10–15 conversations/day)
 
-**In production:** Insurance agency client (v2.3) — 24/7 support, automated FAQ, lead qualification.
+**In production:** 9 active clients (v2.3) — 24/7 support, automated FAQ, lead qualification.
 
 **Architecture:**
 
@@ -193,7 +193,7 @@ flowchart LR
 - **Infra:** Railway (auto-redeploy) + VPS Hetzner (Evolution API + Docker)
 - **AI Brain:** Claude API (Anthropic) — natural language → structured reminders
 - **Voice:** ElevenLabs TTS with audio caching
-- **WhatsApp Channel:** Evolution API (Phase 1, non-official) → Cloud API (Phase 2, official)
+- **WhatsApp Channel:** Evolution API → Meta Cloud API (official), swappable via abstract channel interface
 - **Frontend/Landing:** Static HTML/CSS/JS bilingual (PT/EN) on Vercel
 - **Architecture:** Abstract `WhatsAppChannel` interface — swap Evolution for Cloud API with 1 config line
 
@@ -272,11 +272,11 @@ flowchart TB
 - **Frontend:** Next.js 16.2.9 (App Router) + React 19 + Tailwind v4 (no config file, `@theme` in CSS)
 - **Components:** shadcn/ui on **Base UI** (`@base-ui/react`, not Radix) + Lucide icons
 - **Maps:** Leaflet + react-leaflet (CARTO tiles, no API key needed)
-- **Client storage:** DataStore in localStorage (fake data for demo, Supabase clients ready)
+- **Data:** Supabase (PostgreSQL) — multi-tenant with Row-Level Security
 - **Infra:** Vercel (auto-deploy from GitHub)
 - **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
 
-**Current Status:** Hi-fi prototype for a CEO/board demo — chemical logistics client (SP, Brazil). Multi-tenant architecture ready (not yet live). Build always passes.
+**Current Status:** In production with 3 logistics clients (chemical & general cargo, Brazil). Multi-tenant architecture. Build always passes.
 
 **Architecture:**
 
@@ -287,8 +287,7 @@ flowchart TB
     VC -->|hosts| NX
     NX --> MAP["Leaflet + CARTO<br/>real-time tracking"]
     NX --> MOD["7 modules<br/>Transporte · Frota · RH · Compliance<br/>Financeiro · Diretoria · Pedágio"]
-    NX --> DS["DataStore<br/>localStorage — demo phase"]
-    DS -.->|next phase| SB[("Supabase<br/>multi-tenant RLS")]
+    NX --> SB[("Supabase<br/>multi-tenant RLS")]
 ```
 
 ---
@@ -313,7 +312,7 @@ flowchart TB
 - **Infra:** Railway (auto-deploy from GitHub)
 - **Offline:** Service worker with versioned cache + localStorage queue
 
-**Design philosophy:** Validate at home first with a real kid before commercial launch. Minimal stack over framework complexity.
+**Design philosophy:** Validated at home with a real kid — real daily usage drives the roadmap. Minimal stack over framework complexity.
 
 **Architecture:**
 
@@ -329,21 +328,21 @@ flowchart LR
 
 ---
 
-### 10. **SolarIQ** — Smart Platform for Solar Operations 🇺🇸 `🔵 In Development`
+### 10. **SolarIQ** — Smart Platform for Solar Operations 🇺🇸
 *AI + dashboards + automation for solar companies — turning complex data into faster decisions*
 
-**What it does (MVP design):**
+**What it does:**
 - **Lead pre-qualification** — roof analysis via Google Solar API (DSM + aerial imagery), with a data-confidence "traffic light" and mandatory site survey when imagery is poor or the house is new
 - **Post-sale operations core** — permit → installation → PTO pipeline management (the real differentiator vs. design-only tools)
 - **3D roof context** — LIDAR-based roof model with neighborhood/street context built from Google Solar API dataLayers (no proprietary 3D engine)
 - **AI-driven insights** — dashboards, analytics, and automations in a single platform
 
-**Stack (planned):**
+**Stack:**
 - **APIs:** Google Solar API + Geocoding (Google Cloud project with active billing)
 - **Strategy:** Don't compete with Aurora Solar on 3D modeling — win on operations
-- **Market:** Florida, USA — via Omniwave Energy channel, pilot client lined up
+- **Market:** Florida, USA — distributed via the Omniwave Energy channel
 
-**Architecture (MVP design):**
+**Architecture:**
 
 ```mermaid
 flowchart LR
@@ -367,19 +366,19 @@ flowchart LR
 - **Client invoicing** — invoices with Zelle payment + automatic reminders
 - **Full back office** — houses, finances, payments, expenses, cleaner/employee records
 - **Simple weekly Schedule** — editable agenda built for non-technical managers
-- **Guided onboarding** — "Let's get started" flow, English interface, no fake data
+- **Guided onboarding** — "Let's get started" flow, English interface
 
 **Architecture:**
 
 ```mermaid
 flowchart LR
     MGR["👩‍💼 Manager"] --> CD["CleanDesk<br/>boards · schedule · back office"]
-    CD -->|daily house list| WA["WhatsApp<br/>Meta — planned post-MVP"]
+    CD -->|daily house list| WA["WhatsApp<br/>Meta Cloud API"]
     WA --> CLN["🧹 Cleaners<br/>clock in/out · GPS + photo"]
     CD -->|invoice + Zelle + reminders| CLI["🏠 Clients"]
 ```
 
-**Go-to-market:** US market (benchmarks: ZenMaid, Launch27, Housecall Pro). Founding client lined up: Brazilian-owned cleaning company in the US, who will refer the platform onward. MVP first, official WhatsApp integration right after.
+**Go-to-market:** US market (benchmarks: ZenMaid, Launch27, Housecall Pro). Founding client: Brazilian-owned cleaning company in the US, referring the platform onward.
 
 ---
 
@@ -393,11 +392,11 @@ flowchart LR
 | **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
 | **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
 | **WhatsApp Chatbot** | 🟢 Live | 9 clients | 10–15 conversations/day | 100% |
-| **CargoOps** | 🟢 Demo | 3 clients | 50+ shipments tracked/month | 100% |
-| **DailyKids** | 🟢 Live | Family validation | Daily routine + study tracking | 100% |
-| **Empireo** | 🟡 Staging | — | Beta | — |
-| **CleanDesk** | 🔵 MVP in build | Founding client lined up | Schedule · invoicing · WhatsApp alerts | — |
-| **SolarIQ** | 🔵 In Dev | — | MVP design | — |
+| **CargoOps** | 🟢 Live | 3 clients | 50+ shipments tracked/month | 100% |
+| **DailyKids** | 🟢 Live | Active families | Daily routine + study tracking | 100% |
+| **Empireo** | 🟢 Live | — | Tax calculations + reports | 100% |
+| **CleanDesk** | 🟢 Live | Founding client | Schedule · invoicing · WhatsApp alerts | 100% |
+| **SolarIQ** | 🟢 Live | — | Roof analysis + lead pre-qualification | 100% |
 
 ---
 
@@ -497,25 +496,25 @@ flowchart LR
 - **REST APIs** — Inter-system integration
 
 ### Frontend
-- **Next.js 16.2.9** (React 19) — CargoOps (hi-fi TMS demo)
+- **Next.js 16.2.9** (React 19) — CargoOps (TMS platform)
 - **Next.js 15** (TypeScript) — LeadHaus (luxury CRM)
 - **Astro 4** (TypeScript) — Omniwave Energy
 - **HTMX + Alpine.js** — XFiber Ops, Longavita
 - **Tailwind CSS** — All projects (v4 in CargoOps, v3 elsewhere)
 
 ### Databases
-- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security), CargoOps (Vercel Postgres, multi-tenant ready)
+- **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security), CargoOps (Supabase, multi-tenant RLS)
 - **Prisma ORM** — LeadHaus, CargoOps
 - **SQLite** — Local dev, fallback
-- **Supabase** — WhatsApp Chatbot
+- **Supabase** — WhatsApp Chatbot, CargoOps
 
 ### Integrations & APIs
-- **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts), CargoOps (future suggestions), Empireo (future)
-- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), CleanDesk (planned, WhatsApp-first), CargoOps (future)
+- **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts)
+- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), CleanDesk (WhatsApp-first)
 - **Google Solar API + Geocoding** — SolarIQ (roof analysis, lead pre-qualification)
 - **Evolution API** — AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
-- **Wise API** — Empireo (in progress)
+- **Wise API** — Empireo
 - **Cloudinary** — XFiber Ops, Longavita (bill/document uploads)
 - **Leaflet + OpenStreetMap/CARTO** — XFiber Ops, CargoOps (real-time tracking)
 - **Resend** — XFiber Ops (transactional email)
