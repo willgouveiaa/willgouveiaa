@@ -265,7 +265,7 @@ flowchart TB
 - **Tollway control** — detects when drivers forget to raise suspended axles on empty returns (saves company $)
 - **CT-e integration** — tax invoice + routing data linked in one place
 - **B2B quoting** — public form captures leads; inbox with quote requests
-- **Real financials** — Abril/2026 actuals: R$ 2.015.441 faturamento, OTD 91,5%, ticket R$ 1.241,80
+- **Executive dashboards** — revenue, OTD and average ticket KPIs fed by the client's monthly reports
 - **Admin & reports** — compliance reporting, financial insights, fleet analytics
 
 **Stack:**
@@ -274,10 +274,9 @@ flowchart TB
 - **Maps:** Leaflet + react-leaflet (CARTO tiles, no API key needed)
 - **Client storage:** DataStore in localStorage (fake data for demo, Supabase clients ready)
 - **Infra:** Vercel (auto-deploy from GitHub)
-- **Demo:** https://cargoops-three.vercel.app (login: `admin@jundtransportes.com.br` / `cargoops2026`)
 - **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
 
-**Current Status:** Hi-fi prototype for investor/CEO demo (Jund Transportes). Real Apr/2026 numbers. Multi-tenant architecture ready (not yet live). Build always passes.
+**Current Status:** Hi-fi prototype for a CEO/board demo — chemical logistics client (SP, Brazil). Multi-tenant architecture ready (not yet live). Build always passes.
 
 **Architecture:**
 
@@ -358,6 +357,32 @@ flowchart LR
 
 ---
 
+### 11. **CleanDesk** — Housecleaning Management Platform 🇺🇸
+*Multi-channel operations for cleaning companies — schedule, teams, invoicing & WhatsApp-first communication*
+
+**What it does:**
+- **Board-style operations** — monday.com-inspired UI (boards, columns, colored statuses), white & clean with light blue accents
+- **Daily cleaner alerts** — each cleaner receives the day's houses on her phone via WhatsApp (app as secondary channel)
+- **Clock in/out** — geolocation + photo confirmation at each house
+- **Client invoicing** — invoices with Zelle payment + automatic reminders
+- **Full back office** — houses, finances, payments, expenses, cleaner/employee records
+- **Simple weekly Schedule** — editable agenda built for non-technical managers
+- **Guided onboarding** — "Let's get started" flow, English interface, no fake data
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    MGR["👩‍💼 Manager"] --> CD["CleanDesk<br/>boards · schedule · back office"]
+    CD -->|daily house list| WA["WhatsApp<br/>Meta — planned post-MVP"]
+    WA --> CLN["🧹 Cleaners<br/>clock in/out · GPS + photo"]
+    CD -->|invoice + Zelle + reminders| CLI["🏠 Clients"]
+```
+
+**Go-to-market:** US market (benchmarks: ZenMaid, Launch27, Housecall Pro). Founding client lined up: Brazilian-owned cleaning company in the US, who will refer the platform onward. MVP first, official WhatsApp integration right after.
+
+---
+
 ## 📊 Production Numbers
 
 | Project | Status | Users | Transactions | Uptime |
@@ -367,10 +392,11 @@ flowchart LR
 | **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
 | **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
 | **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
-| **WhatsApp Chatbot** | 🟢 Live | 1 client | 10–15 conversations/day | 100% |
-| **CargoOps** | 🟢 Demo | 1 org | 50+ shipments tracked/month | 100% |
+| **WhatsApp Chatbot** | 🟢 Live | 9 clients | 10–15 conversations/day | 100% |
+| **CargoOps** | 🟢 Demo | 3 clients | 50+ shipments tracked/month | 100% |
 | **DailyKids** | 🟢 Live | Family validation | Daily routine + study tracking | 100% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
+| **CleanDesk** | 🔵 MVP in build | Founding client lined up | Schedule · invoicing · WhatsApp alerts | — |
 | **SolarIQ** | 🔵 In Dev | — | MVP design | — |
 
 ---
@@ -485,7 +511,7 @@ flowchart LR
 
 ### Integrations & APIs
 - **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts), CargoOps (future suggestions), Empireo (future)
-- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), CargoOps (future)
+- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), CleanDesk (planned, WhatsApp-first), CargoOps (future)
 - **Google Solar API + Geocoding** — SolarIQ (roof analysis, lead pre-qualification)
 - **Evolution API** — AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
