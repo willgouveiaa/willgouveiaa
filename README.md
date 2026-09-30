@@ -36,17 +36,16 @@ Every project here is a **complete product**: architecture, backend, frontend, d
 **Architecture:**
 
 ```mermaid
-flowchart TD
-    W["📱 Field Workers<br/>PWA · GPS + Camera"] --> UI
-    O["💻 Office / Admin"] --> UI
-    UI["HTMX + Alpine.js + Tailwind<br/>i18n EN / ES / PT"] --> DJ
-    UI --> MAP["🗺️ Leaflet + OpenStreetMap<br/>Job mapping"]
-    DJ["⚙️ Django 5 + REST Framework<br/>CRM · Reports · Check-in · Clock in/out · Payroll"]
-    DJ --> PG[("🐘 PostgreSQL")]
-    DJ --> CL["☁️ Cloudinary<br/>Photos & documents"]
-    DJ --> RS["✉️ Resend<br/>Transactional email"]
-    GH["GitHub"] -. auto-redeploy .-> RW["🚂 Railway"]
-    RW -. hosts .-> DJ
+flowchart TB
+    GH[GitHub] -->|auto-redeploy| RW[Railway]
+    FW["📱 Field Workers<br/>PWA · GPS · Camera"] --> FE["HTMX + Alpine.js + Tailwind<br/>i18n EN / ES / PT"]
+    OF["💼 Office / Admin"] --> FE
+    RW -->|hosts| DJ["Django 5 + REST Framework<br/>CRM · Reports · Check-in · Clock in/out · Payroll"]
+    FE --> DJ
+    FE --> LF["Leaflet + OpenStreetMap<br/>Job mapping"]
+    DJ --> PG[(PostgreSQL)]
+    DJ --> CL["Cloudinary<br/>Photos & documents"]
+    DJ --> RS["Resend<br/>Transactional email"]
 ```
 
 ---
@@ -72,19 +71,17 @@ flowchart TD
 **Architecture:**
 
 ```mermaid
-flowchart TD
-    P["👥 Patients & Visitors"] --> UI["HTMX + Alpine.js<br/>No build step"]
-    UI --> DJ["⚙️ Django 5"]
-    T["🛠️ Content Team"] --> ADM["Django Admin<br/>Backoffice"] --> DJ
-    DJ --> M1["💬 Community<br/>Pseudonymous forum"]
-    DJ --> M2["📚 Disease Library"]
-    DJ --> M3["🩺 Professionals Directory"]
-    DJ --> M4["🛍️ Marketplace"]
-    DJ --> M5["📰 Blog"]
-    DJ --> PG[("🐘 PostgreSQL")]
-    DJ --> CL["☁️ Cloudinary"]
-    DJ --> WN["WhiteNoise<br/>Static files"]
-    GH["GitHub"] -. auto-redeploy .-> RW["🚂 Railway"]
+flowchart TB
+    U["🧑‍🤝‍🧑 Patients · Caregivers · Family"] --> FE["HTMX + Alpine.js<br/>no build step"]
+    T["👩‍💼 Content Team"] --> ADM["Django Admin<br/>Backoffice"]
+    FE --> DJ["Django 5"]
+    ADM --> DJ
+    DJ --> M1["Community Forum<br/>pseudonymous"]
+    DJ --> M2[Disease Library]
+    DJ --> M3[Professionals Directory]
+    DJ --> M4[Marketplace]
+    DJ --> M5[Blog]
+    DJ --> PG[(PostgreSQL)]
 ```
 
 ---
@@ -108,12 +105,10 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    V["🌎 Visitors<br/>Google / Ads"] --> AS
-    AS["🚀 Astro 4 + TypeScript<br/>Niche landing pages<br/>PT · ES · EN · Sitemap · SEO"]
-    AS -- "Lead form" --> API["⚙️ Django REST API<br/>Omniwave Ops"]
-    API --> CRM["📋 Lead CRM"]
-    GH["GitHub"] -. auto-deploy .-> VC["▲ Vercel"]
-    VC -. hosts .-> AS
+    V["🌐 Visitors<br/>Google / Ads"] --> AS["Astro 4 + TypeScript<br/>Niche landing pages<br/>PT · ES · EN · SEO · Sitemap"]
+    GH[GitHub] -->|auto-deploy| VC[Vercel]
+    VC -->|hosts| AS
+    AS -->|lead form| API["Django REST API<br/>Omniwave Ops"]
 ```
 
 ---
@@ -137,50 +132,47 @@ flowchart LR
 **Architecture:**
 
 ```mermaid
-flowchart TD
-    U["👤 Freelancer<br/>Earning in USD"] --> DB["🌑 Django Dashboard"]
-    DB --> TX["💱 Transactions & History"]
-    TX --> ENG["🧮 Tax Engine<br/>Brackets + Deductions<br/>✅ pytest · 14 tests"]
-    ENG --> PDF["📄 Tax Form PDF"]
-    ENG --> REP["📊 Reports"]
-    TX --> PG[("🐘 PostgreSQL")]
-    WISE["🏦 Wise API · OAuth"] -. in progress .-> TX
+flowchart LR
+    U["🧑‍💻 Freelancer"] --> DASH["Django Dashboard<br/>dark & premium"]
+    W["Wise API<br/>OAuth — in progress"] -.->|transactions| DASH
+    DASH --> TAX["Tax Engine<br/>all brackets + deductions<br/>14 pytest tests"]
+    TAX --> PDF["Tax form PDF"]
+    DASH --> PG[(PostgreSQL)]
 ```
 
 ---
 
 ### 5. **WhatsApp Chatbot** — Multi-tenant with Claude AI 🇺🇸
-*Chatbot platform for WhatsApp powered by AI*
+*Chatbot platform for WhatsApp powered by AI — in production for a US insurance agency*
 
 **What it does:**
 - Multi-tenant chatbot (each client is a tenant)
-- Evolution API integration (WhatsApp)
 - Claude AI (Anthropic) as the brain
-- Conversation history
+- Conversation history + automatic context reset
 - Per-client usage dashboard
-- Automatic context reset
+- **TCPA consent tracking** (US compliance)
+- Multilingual commands (STOP / ATENDENTE / RESET), PT-BR default
+- 7 WhatsApp utility templates + admin HTTP endpoint
 
 **Stack:**
 - **Backend:** Node.js + Express
 - **DB:** Supabase (PostgreSQL)
 - **AI:** Anthropic Claude API
-- **Webhook:** Evolution API (webhook listener)
-- **Infra:** Railway (~$10/month)
+- **Channel:** Meta Cloud API (official) — migrated from Evolution API
+- **Infra:** Railway (~$10–15/month serving 10–15 conversations/day)
 
-**Use cases:** 24/7 support, automated FAQ, lead qualification.
+**In production:** Insurance agency client (v2.3) — 24/7 support, automated FAQ, lead qualification.
 
 **Architecture:**
 
 ```mermaid
 flowchart LR
-    WA["💬 WhatsApp User"] <--> EV["Evolution API"]
-    EV -- "Webhook" --> NODE["⚙️ Node.js + Express"]
-    NODE --> TEN["🏢 Tenant Router<br/>1 client = 1 tenant"]
-    TEN --> CLA["🧠 Claude API"]
-    TEN --> SB[("⚡ Supabase<br/>History · Usage · Config")]
-    CLA --> NODE
-    NODE -- "Reply" --> EV
-    SB --> DASH["📊 Per-client Dashboard"]
+    C["💬 Customer<br/>WhatsApp"] <--> META["Meta Cloud API<br/>official channel"]
+    META -->|webhook| API["Node.js + Express<br/>Railway"]
+    API --> CL["Claude API<br/>the brain"]
+    CL --> API
+    API --> SB[("Supabase<br/>tenants · history · TCPA consent")]
+    API -->|reply + 7 utility templates| META
 ```
 
 ---
@@ -208,18 +200,15 @@ flowchart LR
 **Architecture:**
 
 ```mermaid
-flowchart TD
-    FAM["👨‍👩‍👧 Family<br/>WhatsApp"] <--> CH
-    CH["🔌 WhatsAppChannel interface<br/>Evolution API → Cloud API"]
-    CH -- "Webhook" --> DJ["⚙️ Django 5"]
-    DJ -- "Natural language" --> CLA["🧠 Claude API<br/>Date · Time · Recurrence"]
-    CLA -- "Structured reminder" --> DJ
-    DJ --> PG[("🐘 PostgreSQL<br/>Reminders")]
-    PG -- "Scheduled time" --> TTS["🔊 ElevenLabs TTS<br/>Audio cache"]
-    TTS --> CH
-    HZ["🖥️ Hetzner VPS<br/>Docker"] -. hosts .-> CH
-    RW["🚂 Railway"] -. hosts .-> DJ
-    LP["🌐 Landing PT/EN<br/>Vercel"]
+flowchart TB
+    U["👨‍👩‍👧 Family member<br/>WhatsApp"] <--> EV["Evolution API<br/>VPS Hetzner · Docker"]
+    EV -->|webhook| DJ["Django 5 · Railway"]
+    DJ --> BR["Brain — Claude API<br/>free text → structured reminder"]
+    BR --> RM[("PostgreSQL<br/>Reminders")]
+    SCH["Scheduler"] --> RM
+    SCH -->|fires on time| DJ
+    DJ --> VO["ElevenLabs TTS<br/>audio cache"]
+    DJ -->|text + audio| EV
 ```
 
 ---
@@ -252,17 +241,15 @@ flowchart TD
 **Architecture:**
 
 ```mermaid
-flowchart TD
-    B["🏡 Broker"] --> AUTH["🔐 Auth.js + 2FA TOTP"]
-    AUTH --> UI["▲ Next.js 15 · App Router<br/>Kanban · Lead Scoring · Deal Room"]
-    CH["📲 WhatsApp · Instagram · Facebook"] <--> META["Meta Cloud API"]
-    UI --> SA["⚡ Server Actions<br/>Business Logic"]
-    META --> SA
-    SA --> PR["Prisma ORM"]
-    SA --> CLA["🧠 Claude API<br/>Zero data retention"]
-    PR --> PG[("🐘 PostgreSQL 16")]
-    PG --- RLS["🛡️ Row-Level Security<br/>+ AES-256-GCM at rest"]
-    RW["🚂 Railway"] -. hosts .-> UI
+flowchart TB
+    CH["📥 WhatsApp · Instagram · Facebook<br/>Meta Cloud API"] --> NX
+    EM["✉️ E-mail · Referral"] --> NX
+    NX["Next.js 15 App Router<br/>Server Actions"] --> AI["Claude API<br/>AI reply drafts<br/>broker's tone of voice"]
+    NX --> AUTH["Auth.js v5<br/>+ 2FA TOTP"]
+    NX --> KB["Kanban Pipeline<br/>lead scoring 0–100"]
+    NX --> DR["Deal Room<br/>docs + access codes"]
+    NX --> PR["Prisma ORM"]
+    PR --> PG[("PostgreSQL 16<br/>Row-Level Security<br/>encrypted fields")]
 ```
 
 ---
@@ -287,112 +274,86 @@ flowchart TD
 - **Maps:** Leaflet + react-leaflet (CARTO tiles, no API key needed)
 - **Client storage:** DataStore in localStorage (fake data for demo, Supabase clients ready)
 - **Infra:** Vercel (auto-deploy from GitHub)
+- **Demo:** https://cargoops-three.vercel.app (login: `admin@jundtransportes.com.br` / `cargoops2026`)
 - **UI Style:** Salesforce Lightning theme — Charcoal + Orange, **desktop-first**
 
+**Current Status:** Hi-fi prototype for investor/CEO demo (Jund Transportes). Real Apr/2026 numbers. Multi-tenant architecture ready (not yet live). Build always passes.
+
 **Architecture:**
 
 ```mermaid
-flowchart TD
-    D["🚚 Dispatchers & Managers"] --> UI
-    C["🏭 B2B Prospects"] -- "Quote form" --> UI
-    UI["▲ Next.js 16 + React 19<br/>shadcn/ui on Base UI · Tailwind v4"]
-    UI --> MAP["🗺️ Leaflet + CARTO<br/>Real-time fleet map"]
-    UI --> MOD["📦 Dispatch · Fleet · Compliance<br/>Tolls · CT-e · Quotes · Reports"]
-    MOD --> DS["🗄️ DataStore layer"]
-    DS --> LS["localStorage<br/>Demo data"]
-    DS -. ready .-> SB[("PostgreSQL / Supabase")]
-    VC["▲ Vercel"] -. hosts .-> UI
+flowchart TB
+    B["🖥️ Browser<br/>desktop-first"] --> NX["Next.js 16 + React 19<br/>Tailwind v4 · shadcn on Base UI"]
+    GH[GitHub] -->|auto-deploy| VC[Vercel]
+    VC -->|hosts| NX
+    NX --> MAP["Leaflet + CARTO<br/>real-time tracking"]
+    NX --> MOD["7 modules<br/>Transporte · Frota · RH · Compliance<br/>Financeiro · Diretoria · Pedágio"]
+    NX --> DS["DataStore<br/>localStorage — demo phase"]
+    DS -.->|next phase| SB[("Supabase<br/>multi-tenant RLS")]
 ```
 
 ---
 
-### 9. **BrandQ** — AI-First Digital Marketing & Branding Studio 🇺🇸 🇧🇷
-*Branding, websites, and positioning focused on what actually moves revenue — no traditional agency overhead*
+### 9. **DailyKids** — Kids' Routine & Home-Study Platform 🇧🇷
+*Daily routine checklist + homeschool tracking for children — built for real family use*
 
 **What it does:**
-- **Branding & visual identity** — logos, brand systems, and positioning for small and mid-sized businesses
-- **High-performance websites** — custom Django sites instead of WordPress: millisecond load times, responsive without themes, clean SEO without plugin bloat
-- **Fast delivery** — 15–20 days from briefing to launch, with zero plugin updates or breakage to manage afterwards
-- **Low running costs** — Railway hosting at a fraction of typical WordPress hosting
-- **SEO & positioning** — organic visibility built in from day one (client sites already generating inbound bookings from Google, without paid traffic)
-- **WhatsApp-native discovery** — 5-question briefing clients answer by text or audio, in plain language
-- **Lean by design** — AI-powered workflows, no employee-dependent operations
-- **Confidential cases** — portfolio spans healthcare, food service, solar, logistics, fintech, and telecom clients
+- **Daily routine checklist** — kid-friendly tasks with 6 color gradient themes and unisex doodle backgrounds (rocket, teddy bear, star, soccer ball...)
+- **Family code access** — each family gets its own private space
+- **Weekly study diary** — per-subject content notes with auto-calculated study hours
+- **PDF portfolio report** — exportable homeschool documentation
+- **Uppercase "print-style" letter mode** — toggle for early readers, saved per device
+- **Offline queue** — task marking works without connection, syncs later
+- **Smart day boundary** — logical day starts at 4am (not midnight), with automatic day-change detection
+- **PWA on iPad** — installable with custom icons; primary device is a child's iPad
 
 **Stack:**
-- **Client sites:** Django + Railway
-- **Brand:** "Q" shaped as a lime-green magnifying glass, Inter / Manrope fonts
+- **Backend:** Fastify (Node.js) — single service serving static front-end + API
+- **Frontend:** Vanilla HTML/CSS/JS — no bundler, no framework (deliberate minimal stack)
+- **DB:** PostgreSQL (Railway plugin), stable string slugs as primary keys
+- **Infra:** Railway (auto-deploy from GitHub)
+- **Offline:** Service worker with versioned cache + localStorage queue
+
+**Design philosophy:** Validate at home first with a real kid before commercial launch. Minimal stack over framework complexity.
 
 **Architecture:**
 
 ```mermaid
 flowchart LR
-    L["📥 Lead"] --> BR["💬 WhatsApp Briefing<br/>5 questions · text or audio"]
-    BR --> ID["🎨 Brand Identity<br/>& Positioning"]
-    ID --> SITE["⚙️ Django Website<br/>No plugins · ms load"]
-    SITE --> RW["🚂 Railway"]
-    RW --> SEO["🔎 Google Organic"]
-    SEO --> OUT["📈 Inbound customers<br/>for the client"]
+    IP["📱 Kid's iPad<br/>PWA · Safari"] --> SW["Service Worker<br/>versioned cache · offline queue"]
+    SW --> FA["Fastify — Node.js<br/>static front-end + API"]
+    GH[GitHub] -->|auto-deploy| RW[Railway]
+    RW -->|hosts| FA
+    FA --> PG[("PostgreSQL<br/>slug-keyed activities")]
+    FA --> PDF["PDF portfolio<br/>report"]
 ```
 
 ---
 
-### 10. **RAVENA Dental** — B2B Dental Consulting Landing Page 🇺🇸
-*"Stronger Practices. Brighter Tomorrows." — Consulting, training & mentoring for dental practices in New Jersey*
+### 10. **SolarIQ** — Smart Platform for Solar Operations 🇺🇸 `🔵 In Development`
+*AI + dashboards + automation for solar companies — turning complex data into faster decisions*
 
-**What it does:**
-- **Service showcase** — practice management, dental technology, clinical education, team training, instrument management
-- **Specialized programs** — PRF / regenerative dentistry and nitrous oxide sedation training & mentoring
-- **Brand-matched design** — palette and typography derived directly from the brand logo (gold line-art tooth + dark green wordmark)
-- **Professional presence** — custom domain + branded business email
+**What it does (MVP design):**
+- **Lead pre-qualification** — roof analysis via Google Solar API (DSM + aerial imagery), with a data-confidence "traffic light" and mandatory site survey when imagery is poor or the house is new
+- **Post-sale operations core** — permit → installation → PTO pipeline management (the real differentiator vs. design-only tools)
+- **3D roof context** — LIDAR-based roof model with neighborhood/street context built from Google Solar API dataLayers (no proprietary 3D engine)
+- **AI-driven insights** — dashboards, analytics, and automations in a single platform
 
-**Stack:**
-- **Frontend:** Static single-page HTML/CSS/JS (no build step)
-- **Infra:** Netlify (auto-deploy from GitHub)
-- **DNS:** Netlify DNS
-- **Domain & email:** GoDaddy
+**Stack (planned):**
+- **APIs:** Google Solar API + Geocoding (Google Cloud project with active billing)
+- **Strategy:** Don't compete with Aurora Solar on 3D modeling — win on operations
+- **Market:** Florida, USA — via Omniwave Energy channel, pilot client lined up
 
-**Architecture:**
+**Architecture (MVP design):**
 
 ```mermaid
 flowchart LR
-    DEV["👨‍💻 index.html"] --> GH["GitHub<br/>ravena-site"]
-    GH -. auto-deploy .-> NL["🌐 Netlify CDN"]
-    V["🦷 Dental Practices"] --> DNS["Netlify DNS<br/>Custom domain"]
-    DNS --> NL
-    V -. contact .-> MAIL["✉️ Business Email<br/>GoDaddy"]
-```
-
----
-
-### 11. **SolarIQ** — Smart Platform for Solar Operations 🇺🇸 *(in development)*
-*AI, dashboards, analytics, and automation in one platform — turning complex solar data into faster decisions*
-
-**What it does:**
-- **Lead pre-qualification** — roof and solar potential analysis powered by Google Solar API
-- **Data confidence traffic light** — flags roof data quality; triggers a mandatory site survey when imagery is poor or the home is new construction
-- **3D roof model** — roof and surroundings (neighbors, street) rendered from Solar API data layers (DSM + aerial imagery)
-- **Post-sale operations core** — end-to-end project tracking from permit → installation → PTO (Permission to Operate)
-- **Operational intelligence** — dashboards, analytics, and automations for solar installers
-- **Market focus** — residential solar companies in Florida
-
-**Stack:**
-- **Solar data:** Google Solar API (Building Insights + Data Layers / DSM)
-- **Geo:** Google Geocoding API (Google Cloud)
-
-**Architecture:**
-
-```mermaid
-flowchart TD
-    ADDR["🏠 Homeowner Address"] --> GEO["📍 Google Geocoding API"]
-    GEO --> SOL["☀️ Google Solar API<br/>Building Insights + Data Layers"]
-    SOL --> CONF{"🚦 Roof data<br/>confidence"}
-    CONF -- "🟢 Good" --> M3D["🧊 3D Roof Model<br/>DSM + aerial imagery"]
-    CONF -- "🔴 Poor / new build" --> SURV["📋 Mandatory site survey"]
-    M3D --> Q["✅ Pre-qualified lead"]
-    SURV --> Q
-    Q --> PER["📑 Permit"] --> INS["🔧 Installation"] --> PTO["⚡ PTO"]
-    PTO --> BI["📊 Dashboards · Analytics<br/>AI Automations"]
+    ADDR["🏠 Address"] --> GS["Google Solar API<br/>DSM + aerial imagery"]
+    GS --> TL{"Data confidence<br/>traffic light"}
+    TL -->|good data| PQ["Lead pre-qualification<br/>3D roof context"]
+    TL -->|poor / new house| SS["Mandatory<br/>site survey"]
+    PQ --> OPS["Operations Core<br/>Permit → Installation → PTO"]
+    SS --> OPS
 ```
 
 ---
@@ -406,12 +367,11 @@ flowchart TD
 | **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
 | **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
 | **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
-| **CargoOps** | 🟢 Live | 1 org | 173+ shipments tracked/month | 100% |
-| **BrandQ** | 🟢 Active | — | Client brands & sites delivered | — |
-| **RAVENA Dental** | 🟢 Live | — | Landing page + domain + email | 100% |
+| **WhatsApp Chatbot** | 🟢 Live | 1 client | 10–15 conversations/day | 100% |
+| **CargoOps** | 🟢 Demo | 1 org | 50+ shipments tracked/month | 100% |
+| **DailyKids** | 🟢 Live | Family validation | Daily routine + study tracking | 100% |
 | **Empireo** | 🟡 Staging | — | Beta | — |
-| **WhatsApp Chatbot** | 🟡 Staging | — | Configurable | — |
-| **SolarIQ** | 🟠 In development | — | MVP | — |
+| **SolarIQ** | 🔵 In Dev | — | MVP design | — |
 
 ---
 
@@ -459,7 +419,7 @@ flowchart TD
 - **RCMOS Journal:** [Article #1880](https://submissoesrevistarcmos.com.br/rcmos/article/view/1880)
 
 ### 🏆 Awards & Recognition
-- **IEEE Senior Member** (since June 2026) — Institute of Electrical and Electronics Engineers
+- **IEEE Member** — Institute of Electrical and Electronics Engineers
 - **RCMOS 2023 Cycle:** [Recognition & Award](https://submissoesrevistarcmos.com.br/rcmos/ciclo_2023)
 
 ---
@@ -489,14 +449,12 @@ flowchart TD
 ### Integrations & APIs
 ![Anthropic Claude](https://img.shields.io/badge/Anthropic_Claude-662e9b?style=for-the-badge&logo=anthropic&logoColor=white)
 ![Meta](https://img.shields.io/badge/Meta_Cloud_API-0467df?style=for-the-badge&logo=meta&logoColor=white)
-![Google Cloud](https://img.shields.io/badge/Google_Solar_API-4285f4?style=for-the-badge&logo=googlecloud&logoColor=white)
 ![Wise](https://img.shields.io/badge/Wise-5d34d6?style=for-the-badge&logo=wise&logoColor=white)
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448c5?style=for-the-badge&logo=cloudinary&logoColor=white)
 
 ### DevOps & Hosting
 ![Railway](https://img.shields.io/badge/Railway-0b0d0e?style=for-the-badge&logo=railway&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-![Netlify](https://img.shields.io/badge/Netlify-00c7b7?style=for-the-badge&logo=netlify&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ed?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-f05032?style=for-the-badge&logo=git&logoColor=white)
 
@@ -505,8 +463,9 @@ flowchart TD
 ## Complete Tech Stack Details
 
 ### Backend
-- **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe, BrandQ client sites
+- **Django 5** (Python) — XFiber Ops, Longavita, Empireo, AlertaMe
 - **Node.js + Express** — WhatsApp Chatbot
+- **Fastify (Node.js)** — DailyKids (single service: static front-end + API)
 - **Next.js 15** (App Router + Server Actions) — LeadHaus
 - **Next.js 16** (App Router) — CargoOps
 - **REST APIs** — Inter-system integration
@@ -516,8 +475,7 @@ flowchart TD
 - **Next.js 15** (TypeScript) — LeadHaus (luxury CRM)
 - **Astro 4** (TypeScript) — Omniwave Energy
 - **HTMX + Alpine.js** — XFiber Ops, Longavita
-- **Static HTML/CSS/JS** — RAVENA Dental, AlertaMe landing page
-- **Tailwind CSS** — All app projects (v4 in CargoOps, v3 elsewhere)
+- **Tailwind CSS** — All projects (v4 in CargoOps, v3 elsewhere)
 
 ### Databases
 - **PostgreSQL** — XFiber Ops (Railway), Longavita (Railway), Empireo (Railway), AlertaMe (Railway), LeadHaus (Railway, with Row-Level Security), CargoOps (Vercel Postgres, multi-tenant ready)
@@ -527,11 +485,10 @@ flowchart TD
 
 ### Integrations & APIs
 - **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts), CargoOps (future suggestions), Empireo (future)
-- **Meta Cloud API** — LeadHaus (WhatsApp / Instagram / Facebook), CargoOps (future)
-- **Evolution API** — WhatsApp Chatbot, AlertaMe (Phase 1 WhatsApp channel)
+- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), CargoOps (future)
+- **Google Solar API + Geocoding** — SolarIQ (roof analysis, lead pre-qualification)
+- **Evolution API** — AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
-- **Google Solar API** — SolarIQ (roof analysis, data layers / DSM, 3D roof model)
-- **Google Geocoding API** — SolarIQ (address → coordinates)
 - **Wise API** — Empireo (in progress)
 - **Cloudinary** — XFiber Ops, Longavita (bill/document uploads)
 - **Leaflet + OpenStreetMap/CARTO** — XFiber Ops, CargoOps (real-time tracking)
@@ -543,14 +500,14 @@ flowchart TD
 - **AES-256-GCM encryption at rest** — LeadHaus (sensitive client data)
 
 ### Infra & DevOps
-- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus, BrandQ client sites (deploy + auto-redeploy)
+- **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus, DailyKids (deploy + auto-redeploy)
 - **Vercel** — Omniwave Energy, CargoOps, AlertaMe landing page
-- **Netlify** — RAVENA Dental (auto-deploy from GitHub + Netlify DNS)
 - **VPS Hetzner** — AlertaMe Evolution API (Docker, Ubuntu)
-- **Google Cloud** — SolarIQ (Solar API + Geocoding)
+- **Google Cloud** — SolarIQ (Solar API + Geocoding, active billing)
 - **GitHub** — Source of truth for all projects
 - **Docker** (optional) — Containerization
 - **Gunicorn + Whitenoise** — Production servers (Django projects)
+- **PWA + Service Workers** — DailyKids (versioned cache, offline queue), XFiber Ops
 
 ### QA & Testing
 - **pytest** — Empireo (14 tests), AlertaMe (webhook + brain tests)
@@ -572,7 +529,6 @@ flowchart TD
 - 🇧🇷 Brazilian, based in São Paulo
 - 🎯 Senior Product Manager (5+ years at LATAM bank)
 - 🚀 Founder of OmniWave Group LLC in USA 🇺🇸
-- 🏅 IEEE Senior Member
 - 📱 Obsessed with onboarding & UX
 - 🤖 GenAI enthusiast (Claude, LLMs, agents)
 - 💻 Workbench: Mac + Claude Code + GitHub web
