@@ -395,7 +395,7 @@ flowchart LR
 | **CargoOps** | 🟢 Live | 3 clients | 50+ shipments tracked/month | 100% |
 | **DailyKids** | 🟢 Live | Active families | Daily routine + study tracking | 100% |
 | **Empireo** | 🟢 Live | — | Tax calculations + reports | 100% |
-| **CleanDesk** | 🟢 Live | Founding client | Schedule · invoicing · WhatsApp alerts | 100% |
+| **CleanDesk** | 🟢 Live | 1 client | Schedule · invoicing · WhatsApp alerts | 100% |
 | **SolarIQ** | 🟢 Live | — | Roof analysis + lead pre-qualification | 100% |
 
 ---
@@ -424,7 +424,7 @@ flowchart LR
 
 ## 📞 Contact
 
-- **LinkedIn:** [linkedin.com/in/will-gouveia](https://linkedin.com/in/will-gouveia)
+- **LinkedIn:** [linkedin.com/in/willgouveia](https://linkedin.com/in/willgouveia)
 - **Email:** wgouveiaa@gmail.com
 - **GitHub:** [@willgouveiaa](https://github.com/willgouveiaa)
 
