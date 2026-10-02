@@ -356,7 +356,7 @@ flowchart LR
 
 ---
 
-### 11. **CleanDesk** — Housecleaning Management Platform 🇺🇸
+### 11. **DailyMaid** — Housecleaning Management Platform 🇺🇸
 *Multi-channel operations for cleaning companies — schedule, teams, invoicing & WhatsApp-first communication*
 
 **What it does:**
@@ -372,7 +372,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    MGR["👩‍💼 Manager"] --> CD["CleanDesk<br/>boards · schedule · back office"]
+    MGR["👩‍💼 Manager"] --> CD["DailyMaid<br/>boards · schedule · back office"]
     CD -->|daily house list| WA["WhatsApp<br/>Meta Cloud API"]
     WA --> CLN["🧹 Cleaners<br/>clock in/out · GPS + photo"]
     CD -->|invoice + Zelle + reminders| CLI["🏠 Clients"]
@@ -395,7 +395,7 @@ flowchart LR
 | **CargoOps** | 🟢 Live | 3 clients | 50+ shipments tracked/month | 100% |
 | **DailyKids** | 🟢 Live | Active families | Daily routine + study tracking | 100% |
 | **Empireo** | 🟢 Live | — | Tax calculations + reports | 100% |
-| **CleanDesk** | 🟢 Live | 1 client | Schedule · invoicing · WhatsApp alerts | 100% |
+| **DailyMaid** | 🟢 Live | 1 client | Schedule · invoicing · WhatsApp alerts | 100% |
 | **SolarIQ** | 🟢 Live | — | Roof analysis + lead pre-qualification | 100% |
 
 ---
