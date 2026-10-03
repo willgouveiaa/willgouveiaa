@@ -382,21 +382,50 @@ flowchart LR
 
 ---
 
+### 12. **Pestana Management** — Construction PM Landing Page 🇺🇸
+*Client work: digital presence for a Florida construction project management company*
+
+**What it does:**
+- **One-page professional site** — services, process, and portfolio for a construction project management firm (permits, inspections, supplier coordination, through to finished-home delivery)
+- **Portfolio showcase** — 13+ homes managed as PM for builder clients
+- **Lead capture** — contact section connected to the company's corporate e-mail
+- **Custom domain & e-mail** — full domain + DNS + professional e-mail setup for the client
+
+**Stack:**
+- **Frontend:** Static landing page — HTML/CSS/JS, lightweight, fast, SEO-friendly
+- **Infra:** Netlify (hosting, auto-deploy) + GoDaddy (domain, DNS, corporate e-mail)
+- **Market:** Florida, USA
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    V["🌐 Visitors<br/>builders & homeowners"] --> LP["Landing Page<br/>services · process · portfolio"]
+    GD["GoDaddy<br/>domain + DNS + e-mail"] --> NT[Netlify]
+    NT -->|hosts| LP
+    LP -->|lead capture| EM["✉️ Corporate e-mail"]
+```
+
+**Delivered:** Live for a Florida construction management client — part of Omniwave Group's client services arm.
+
+---
+
 ## 📊 Production Numbers
 
 | Project | Status | Users | Transactions | Uptime |
 |---------|--------|-------|--------------|--------|
-| **XFiber Ops** | 🟢 Live | 55 | 1000+ checkins/month | 100% |
+| **XFiber Ops** | 🟢 Live | 85 users | 1000+ checkins/month | 100% |
 | **Longavita** | 🟢 Live | Growing | 100+ community posts/month | 100% |
 | **Omniwave Energy** | 🟢 Live | — | 50+ leads/month | 100% |
-| **LeadHaus** | 🟢 Live | 9 brokers | 300+ leads managed/month | 100% |
-| **AlertaMe** | 🟢 Live | 12 | 50+ reminders/week | 99.8% |
-| **WhatsApp Chatbot** | 🟢 Live | 9 clients | 10–15 conversations/day | 100% |
+| **LeadHaus** | 🟢 Live | 19 brokers | 300+ leads managed/month | 100% |
+| **AlertaMe** | 🟢 Live | 26 | 50+ reminders/week | 99.8% |
+| **WhatsApp Chatbot** | 🟢 Live | 11 clients | 10–15 conversations/day | 100% |
 | **CargoOps** | 🟢 Live | 3 clients | 50+ shipments tracked/month | 100% |
 | **DailyKids** | 🟢 Live | Active families | Daily routine + study tracking | 100% |
-| **Empireo** | 🟢 Live | — | Tax calculations + reports | 100% |
-| **DailyMaid** | 🟢 Live | 1 client | Schedule · invoicing · WhatsApp alerts | 100% |
-| **SolarIQ** | 🟢 Live | — | Roof analysis + lead pre-qualification | 100% |
+| **Empireo** | 🟢 Live | 5 users | Tax calculations + reports | 100% |
+| **DailyMaid** | 🟢 Live | Founding client | Schedule · invoicing · WhatsApp alerts | 100% |
+| **SolarIQ** | 🟢 Beta | — | Roof analysis + lead pre-qualification | 100% |
+| **Pestana Management** | 🟢 Live | 1 client | Construction PM leads | 100% |
 
 ---
 
@@ -424,7 +453,7 @@ flowchart LR
 
 ## 📞 Contact
 
-- **LinkedIn:** [linkedin.com/in/willgouveia](https://linkedin.com/in/willgouveia)
+- **LinkedIn:** [linkedin.com/in/will-gouveia](https://linkedin.com/in/will-gouveia)
 - **Email:** wgouveiaa@gmail.com
 - **GitHub:** [@willgouveiaa](https://github.com/willgouveiaa)
 
@@ -480,6 +509,7 @@ flowchart LR
 ### DevOps & Hosting
 ![Railway](https://img.shields.io/badge/Railway-0b0d0e?style=for-the-badge&logo=railway&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-00c7b7?style=for-the-badge&logo=netlify&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ed?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-f05032?style=for-the-badge&logo=git&logoColor=white)
 
@@ -510,7 +540,7 @@ flowchart LR
 
 ### Integrations & APIs
 - **Anthropic Claude API** — WhatsApp Chatbot, AlertaMe (brain), LeadHaus (AI drafts)
-- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), CleanDesk (WhatsApp-first)
+- **Meta Cloud API** — WhatsApp Chatbot (official channel in production), LeadHaus (WhatsApp / Instagram / Facebook), DailyMaid (WhatsApp-first)
 - **Google Solar API + Geocoding** — SolarIQ (roof analysis, lead pre-qualification)
 - **Evolution API** — AlertaMe (Phase 1 WhatsApp channel)
 - **ElevenLabs API** — AlertaMe (voice synthesis with caching)
@@ -527,6 +557,7 @@ flowchart LR
 ### Infra & DevOps
 - **Railway** — XFiber Ops, Longavita, Empireo, AlertaMe, LeadHaus, DailyKids (deploy + auto-redeploy)
 - **Vercel** — Omniwave Energy, CargoOps, AlertaMe landing page
+- **Netlify** — Pestana Management (landing page, auto-deploy)
 - **VPS Hetzner** — AlertaMe Evolution API (Docker, Ubuntu)
 - **Google Cloud** — SolarIQ (Solar API + Geocoding, active billing)
 - **GitHub** — Source of truth for all projects
