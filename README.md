@@ -410,6 +410,37 @@ flowchart LR
 
 ---
 
+### 13. **Lumina Essências** — Premium Home Fragrance E-commerce 🇧🇷
+*Institutional & commercial storefront for a home perfumery brand — a sensory-first digital experience*
+
+**What it does:**
+- **Interactive catalog** — aromatic candles with olfactory families, fragrance notes and pricing
+- **Shopping cart** — conversion-oriented purchase flow
+- **Brand storytelling** — dedicated sections for the brand's history and artisanal production process
+- **Customer relationship channels** — direct contact built into the experience
+- **Expansion-ready portfolio** — structured to onboard diffusers, liquid soaps and room sprays
+- **Sophisticated visual identity** — branding, storytelling and e-commerce united in one cohesive, elegant experience
+
+**Stack:**
+- **Frontend:** Conversion-focused landing + e-commerce UI (interactive catalog, cart)
+- **Brand:** Premium visual identity, sensory-first storytelling
+- **Market:** Brazil 🇧🇷
+
+**Architecture:**
+
+```mermaid
+flowchart LR
+    V["🌐 Visitors"] --> LP["Lumina Essências<br/>brand story · artisanal process"]
+    LP --> CAT["Interactive Catalog<br/>olfactory families · fragrance notes · pricing"]
+    CAT --> CART["🛒 Shopping Cart"]
+    LP --> REL["Customer<br/>relationship channels"]
+    CAT --> EXP["Expansion-ready<br/>diffusers · liquid soaps · room sprays"]
+```
+
+**Delivered:** Branding + storytelling + e-commerce functionality in one cohesive, conversion-oriented digital experience.
+
+---
+
 ## 📊 Production Numbers
 
 | Project | Status | Users | Transactions | Uptime |
@@ -426,6 +457,7 @@ flowchart LR
 | **DailyMaid** | 🟢 Live | Founding client | Schedule · invoicing · WhatsApp alerts | 100% |
 | **SolarIQ** | 🟢 Beta | — | Roof analysis + lead pre-qualification | 100% |
 | **Pestana Management** | 🟢 Live | 1 client | Construction PM leads | 100% |
+| **Lumina Essências** | 🟢 Live | — | Catalog · cart · brand storytelling | 100% |
 
 ---
 
